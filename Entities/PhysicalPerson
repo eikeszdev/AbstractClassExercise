@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InheritanceAbstactClass.Entities
+{
+    internal class PhysicalPerson : Person
+    {
+        public double HealthSpending { get; set; }
+
+        public PhysicalPerson(double healthSpending, string name, double anualIncome) : base(name, anualIncome)
+        {
+            HealthSpending = healthSpending;
+        }
+
+        public override double CalculateTax()
+        {
+            double totalTax = 0;
+            if (AnualIncome < 20000)
+            {
+                if(HealthSpending > 0)
+                {
+                    return (AnualIncome * 0.15) - (HealthSpending / 2);
+                }
+                
+                return AnualIncome * 0.15;
+                
+            }
+            else
+            {
+                if (HealthSpending > 0)
+                {
+                    return (AnualIncome * 0.25) - (HealthSpending / 2);
+                }
+
+                return AnualIncome * 0.25;
+            }
+        }
+    }
+}
